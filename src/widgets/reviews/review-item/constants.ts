@@ -1,6 +1,6 @@
-import { ReviewProperies } from './review-item';
+import { ReviewProps } from './review';
 
-export const ReviewsList: ReviewProperies[] = [
+export const reviewsList: ReviewProps[] = [
   {
     content:
       'Незважаючи на початкові сумніви, робота з вашим психотерапевтом була неймовірно корисною. Велике спасибі за вашу терплячу та підтримуючу атмосферу, яка допомогла мені розкритися та перетворити своє життя.',

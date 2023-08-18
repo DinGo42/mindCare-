@@ -1,1 +1,1 @@
-export { Reviews } from './content';
+export { ReviewList } from './review-list';

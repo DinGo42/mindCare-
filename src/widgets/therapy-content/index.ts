@@ -1,1 +1,1 @@
-export { Content } from './content';
+export { ConsultationList } from './consultation-list';

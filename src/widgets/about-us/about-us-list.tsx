@@ -1,10 +1,9 @@
-import { memo } from 'react';
-import { AppButton } from '../../shared/components';
-import { STANDART_BUTTON_STYLES } from '../../shared/constants';
-import { warrantyInformation } from './warranty-item/api';
-import { WattantyItem } from './warranty-item';
+import { FC } from 'react';
+import { Button } from '../../shared/components';
+import { Button_Type } from '../../shared/components/button';
+import { WarrantyList } from './warranty-item/warranty-list';
 
-const aboutUs = () => (
+export const AboutUsList: FC = () => (
   <>
     <div className="flex w-full gap-16 items-center max-PCS:flex-wrap max-PCS:justify-center">
       <div className="phoneM:w-4/6 w-full h-fit  text-black-600 flex flex-col gap-8 max-PCS:items-center">
@@ -27,19 +26,15 @@ const aboutUs = () => (
           Вони прислухаються до ваших потреб і допомагають вам знайти ефективні
           інструменти та стратегії для подолання життєвих викликів.
         </h3>
-        <AppButton className={STANDART_BUTTON_STYLES.REGULAR_MORE_INFO_BUTTON}>
+        <Button buttonType={Button_Type.MORE_INFO_BUTTON}>
           Детальніше про нас
-        </AppButton>
+        </Button>
       </div>
       <div
         className={`max-phoneM:p-4 phoneM:w-3/5 max-phoneM:ml-4 max-phoneM:mr-4 w-full h-fit bg-green-100 rounded-lg grid grid-cols-2 gap-10 phoneM:p-12 text-black-600 max-tabletS:grid-cols-1`}
       >
-        {warrantyInformation.map((information, index) => (
-          <WattantyItem {...information} key={index} />
-        ))}
+        <WarrantyList />
       </div>
     </div>
   </>
 );
-
-export const AboutUs = memo(aboutUs);

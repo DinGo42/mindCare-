@@ -1,3 +1,3 @@
-export { AppButton } from './button';
-export { ContentLockWrapper } from './lock-page-wrapper';
-export { PageWrapper } from './page-wrapper';
+export { Button } from './button';
+export { LockContent } from './lock-content';
+export { ContentWrapper } from './content-wrapper';

@@ -1,15 +1,14 @@
-import { memo, useContext } from 'react';
+import { FC, memo, useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { XIcon } from '../../../../public/imgs';
-import { ContentLockWrapper, AppButton } from '../../../shared/components';
-import { STANDART_BUTTON_STYLES } from '../../../shared/constants';
+import { Button, LockContent } from '../../../shared/components';
 import { modalConxtex } from '../../../shared/hooks';
-
+import { Button_Type } from '../../../shared/components/button';
 type IFormInputs = {
   quastion: string;
   email: string;
 };
-const useAppForm = () => {
+export const FAQForm: FC = memo(() => {
   const {
     register,
     handleSubmit,
@@ -21,11 +20,11 @@ const useAppForm = () => {
     console.log(data);
   };
   return (
-    <ContentLockWrapper className="items-center justify-center" blur={true}>
+    <LockContent className="items-center justify-center" blur={true}>
       <div className="flex-col max-w-md w-screen h-fit bg-green-500 rounded-xl flex justify-center items-end pb-10 pr-10 pl-10 pt-5 gap-6 border-2 border-green-600 border-l-4 border-b-4">
-        <AppButton onClick={closeModal} className=" p-4">
+        <Button onClick={closeModal} className="p-4">
           <XIcon />
-        </AppButton>
+        </Button>
 
         <div className="flex w-full h-full flex-col">
           <form
@@ -65,16 +64,16 @@ const useAppForm = () => {
               <p className="text-black-500">{errors.email.message}</p>
             )}
 
-            <AppButton
+            <Button
               type="submit"
-              className={`${STANDART_BUTTON_STYLES.REGULAR_MORE_INFO_BUTTON} w-full justify-center`}
+              className={`w-full justify-center`}
+              buttonType={Button_Type.MORE_INFO_BUTTON}
             >
               Надіслати
-            </AppButton>
+            </Button>
           </form>
         </div>
       </div>
-    </ContentLockWrapper>
+    </LockContent>
   );
-};
-export const FAQForm = memo(useAppForm);
+});

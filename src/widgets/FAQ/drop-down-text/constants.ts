@@ -1,4 +1,4 @@
-export const FAQList = [
+export const faqList = [
   {
     question: 'Що таке психотерапія і чи вона мені допоможе?',
     answer:

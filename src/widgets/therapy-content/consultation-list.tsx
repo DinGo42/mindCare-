@@ -1,12 +1,7 @@
-import { memo } from 'react';
-import { TherapyItem } from './therapy-item';
-import { therapyList } from './therapy-item/api';
+import { FC } from 'react';
+import { TherapyList } from './therapy-container/therapy-list';
 
-export enum BASIC_ANIMATION {
-  STANDART_SMOOTH_ANIMATION = 'hover:scale-105 transition-all delay-100',
-}
-
-const content = () => (
+export const ConsultationList: FC = () => (
   <div
     className={`w-full h-fit tabletS:p-20 p-4 bg-green-100 flex flex-col items-center text-black-600 gap-10 rounded-xl`}
   >
@@ -17,11 +12,7 @@ const content = () => (
       <h4 className="text-small-medium">Який тип терапії ви шукаєте?</h4>
     </div>
     <div className="w-full flex gap-5 h-fit max-PCM:flex-wrap">
-      {therapyList.map((item, index) => (
-        <TherapyItem {...item} key={index} />
-      ))}
+      <TherapyList />
     </div>
   </div>
 );
-
-export const Content = memo(content);

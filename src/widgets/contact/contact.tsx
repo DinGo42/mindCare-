@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { FC } from 'react';
 import {
   FacebookIcon,
   InstagramIcon,
@@ -10,7 +10,7 @@ import {
   TwitterIcon,
 } from '../../../public/imgs';
 
-const contact = () => (
+export const ContactList: FC = () => (
   <div className="max-tabletS:justify-center max-PCS:pb-20 max-PCS:pt-20 flex w-full h-fit bg-green-500 items-center justify-around bg-leaf-texture-contacts bg-no-repeat rounded-xl">
     <div className="max-tabletS:hidden w-1/2 h-full">
       <img
@@ -50,5 +50,3 @@ const contact = () => (
     </div>
   </div>
 );
-
-export const Contact = memo(contact);

@@ -33,7 +33,7 @@
   transform: rotateY(-180deg);
   transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.4, 1.275);
 }
-.card:hover .card__back {
+.card:active .card__back {
   transform: rotateY(0deg);
   z-index: 2;
 }

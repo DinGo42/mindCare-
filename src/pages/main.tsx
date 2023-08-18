@@ -1,11 +1,11 @@
-import { memo } from 'react';
-import { PageWrapper } from '../shared/components';
-import { AboutUs } from '../widgets/about-us';
-import { Contact } from '../widgets/contacts';
-import { Header } from '../widgets/header';
-import { Reviews } from '../widgets/reviews';
-import { Content } from '../widgets/therapy-content';
-import { FAQ } from '../widgets/FAQ';
+import { ContentWrapper } from '../shared/components';
+import {
+  AboutUsList,
+  ReviewList,
+  ContactList,
+  FAQList,
+  ConsultationList,
+} from '../widgets';
 
 export enum PageAnchors {
   THERAPY = 'therapy',
@@ -15,28 +15,26 @@ export enum PageAnchors {
   FAQ = 'faq',
 }
 
-const mainPage = () => (
+export const Main = () => (
   <>
-    <PageWrapper>
-      <Header />
+    <ContentWrapper>
       <div className="gap-24 flex flex-col relative pb-24">
         <section id={PageAnchors.THERAPY}>
-          <Content />
+          <ConsultationList />
         </section>
         <section id={PageAnchors.ABOUTUS}>
-          <AboutUs />
+          <AboutUsList />
         </section>
         <section id={PageAnchors.REVIEWS}>
-          <Reviews />
+          <ReviewList />
         </section>
         <section id={PageAnchors.CONTACT}>
-          <Contact />
+          <ContactList />
         </section>
         <section id={PageAnchors.FAQ}>
-          <FAQ />
+          <FAQList />
         </section>
       </div>
-    </PageWrapper>
+    </ContentWrapper>
   </>
 );
-export const MainPage = memo(mainPage);

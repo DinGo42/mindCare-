@@ -1,10 +1,10 @@
-import { memo } from 'react';
-import { AppButton } from '../../shared/components';
-import { STANDART_BUTTON_STYLES } from '../../shared/constants';
+import { FC } from 'react';
+import { Button } from '../../shared/components';
+import { Button_Type } from '../../shared/components/button';
 import { useScreenType } from '../../shared/hooks';
-import { Navigation } from './navigation';
+import { Navigation } from './navigation/navigation';
 
-const useHeader = () => {
+export const Header: FC = () => {
   const { isLaptop } = useScreenType();
   return (
     <div className="flex flex-col items-center sticky top-0 z-20">
@@ -12,15 +12,11 @@ const useHeader = () => {
         <img src="public/imgs/header/logo.png" className="w-44" />
         <div className="flex gap-10">
           {isLaptop && <Navigation />}
-          <AppButton
-            className={STANDART_BUTTON_STYLES.REGULAR_MORE_INFO_BUTTON}
-          >
+          <Button buttonType={Button_Type.MORE_INFO_BUTTON}>
             Швидка підтримка
-          </AppButton>
+          </Button>
         </div>
       </div>
     </div>
   );
 };
-
-export const Header = memo(useHeader);

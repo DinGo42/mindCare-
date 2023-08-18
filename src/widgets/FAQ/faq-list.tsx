@@ -1,12 +1,11 @@
-import { memo, useContext } from 'react';
-import { AppButton } from '../../shared/components';
-import { STANDART_BUTTON_STYLES } from '../../shared/constants';
+import { FC, useContext } from 'react';
+import { Button } from '../../shared/components';
 import { modalConxtex } from '../../shared/hooks';
-import { DropDownText } from './drop-down-text';
-import { FAQList } from './drop-down-text/api';
-import { FAQForm } from './form';
+import { FAQForm } from './form/form';
+import { DropDownList } from './drop-down-text/drop-down-list';
+import { Button_Type } from '../../shared/components/button';
 
-const useFAQ = () => {
+export const FAQList: FC = () => {
   const { openModal } = useContext(modalConxtex);
   return (
     <div className="w-full h-fit flex flex-col items-center gap-12 text-regular-bold text-black-600">
@@ -14,21 +13,18 @@ const useFAQ = () => {
         Популярні питання
       </h1>
       <div className="flex flex-col w-3/5 border-t-1">
-        {FAQList.map((question, index) => (
-          <DropDownText {...question} key={index} />
-        ))}
+        <DropDownList />
       </div>
       <h2 className="text-center pl-10 pr-10">
         Не вдалося знайти відповіді на своє питання? Задайте його нам,
         <br /> і ми з радістю допоможемо вам знайти рішення
       </h2>
-      <AppButton
-        className={STANDART_BUTTON_STYLES.REGULAR_MORE_INFO_BUTTON}
+      <Button
+        buttonType={Button_Type.MORE_INFO_BUTTON}
         onClick={() => openModal(<FAQForm />)}
       >
         Задати запитання
-      </AppButton>
+      </Button>
     </div>
   );
 };
-export const FAQ = memo(useFAQ);

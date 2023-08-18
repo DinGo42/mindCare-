@@ -1,4 +1,4 @@
-import { type ReactNode, type FC, useContext, memo } from 'react';
+import { type ReactNode, type FC, useContext } from 'react';
 import { modalConxtex } from '../hooks/use-modal-provider';
 
 type ContentLockProperties = {
@@ -6,7 +6,7 @@ type ContentLockProperties = {
   blur?: boolean;
   className?: string;
 };
-const useContentLock: FC<ContentLockProperties> = ({
+export const LockContent: FC<ContentLockProperties> = ({
   children,
   blur = false,
   className = '',
@@ -24,4 +24,3 @@ const useContentLock: FC<ContentLockProperties> = ({
     </div>
   );
 };
-export const ContentLockWrapper = memo(useContentLock);

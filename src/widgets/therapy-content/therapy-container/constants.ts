@@ -16,3 +16,7 @@ export const therapyList = [
     imgClassName: 'w-2.76/6',
   },
 ];
+
+export enum BASIC_ANIMATION {
+  STANDART_SMOOTH_ANIMATION = 'hover:scale-105 transition-all delay-100',
+}

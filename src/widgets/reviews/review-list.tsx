@@ -1,26 +1,26 @@
-import { memo, useCallback, useRef, useState } from 'react';
+import { FC, useCallback, useRef, useState } from 'react';
 import { ArrowIcon } from '../../../public/imgs';
-import { AppButton } from '../../shared/components';
-import { STANDART_BUTTON_STYLES } from '../../shared/constants';
-import { useScreenType } from '../../shared/hooks';
-import { ReviewsList } from './review-item/api';
-import { ReviewItem } from './review-item/review-item';
+import { Button } from '../../shared/components';
 
-const useReviews = () => {
+import { useScreenType } from '../../shared/hooks';
+import { ReviewsList } from './review-item/reviews';
+import { Button_Type } from '../../shared/components/button';
+
+export const ReviewList: FC = () => {
   const { isTablet } = useScreenType();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const [scrollAmount] = useState(300);
 
-  const handleLeftScroll = useCallback(() => {
-    if (!containerRef.current) return;
-    containerRef.current.scrollLeft -= scrollAmount;
-  }, [scrollAmount]);
-
-  const handleRightScroll = useCallback(() => {
-    if (!containerRef.current) return;
-    containerRef.current.scrollLeft += scrollAmount;
-  }, [scrollAmount]);
+  const handleScroll = useCallback(
+    (bool: boolean) => {
+      if (!containerRef.current) return;
+      bool
+        ? (containerRef.current.scrollLeft -= scrollAmount)
+        : (containerRef.current.scrollLeft += scrollAmount);
+    },
+    [scrollAmount]
+  );
 
   return (
     <div className="flex flex-col items-center">
@@ -31,18 +31,18 @@ const useReviews = () => {
           </h1>
           {isTablet && (
             <div className="flex gap-2">
-              <AppButton
-                className={STANDART_BUTTON_STYLES.REGULAR_CARUSEL_BUTTON}
-                onClick={handleLeftScroll}
+              <Button
+                buttonType={Button_Type.CARUSEL_BUTTON}
+                onClick={() => handleScroll(true)}
               >
                 <ArrowIcon />
-              </AppButton>
-              <AppButton
-                onClick={handleRightScroll}
-                className={STANDART_BUTTON_STYLES.REGULAR_CARUSEL_BUTTON}
+              </Button>
+              <Button
+                onClick={() => handleScroll(false)}
+                buttonType={Button_Type.CARUSEL_BUTTON}
               >
                 <ArrowIcon className={'rotate-180'} />
-              </AppButton>
+              </Button>
             </div>
           )}
         </div>
@@ -51,26 +51,21 @@ const useReviews = () => {
             className="flex overflow-hidden overflow-x-hidden max-tabletS:overflow-x-auto max-tabletS:w-screen gap-10 scroll-smooth pt-5 pb-5"
             ref={containerRef}
           >
-            {ReviewsList.map((review, index) => (
-              <ReviewItem {...review} key={index} />
-            ))}
+            <ReviewsList />
           </div>
         </div>
         <div className="flex items-center gap-14 pt-8 max-phoneM:flex-col">
-          <AppButton
-            className={STANDART_BUTTON_STYLES.REGULAR_MORE_INFO_BUTTON}
-          >
+          <Button buttonType={Button_Type.MORE_INFO_BUTTON}>
             Залишити відгук
-          </AppButton>
-          <AppButton
-            className={`${STANDART_BUTTON_STYLES.REGULAR_MINIMALISTIC_BUTTON} hover:bg-orange-700 hover:text-white phoneM:pl-12 phoneM:pr-12 rounded-4xl p-4`}
+          </Button>
+          <Button
+            className={` hover:bg-orange-700 hover:text-white phoneM:pl-12 phoneM:pr-12 rounded-4xl p-4`}
+            buttonType={Button_Type.MINIMALISTIC_BUTTON}
           >
             Переглянути всі відгуки
-          </AppButton>
+          </Button>
         </div>
       </div>
     </div>
   );
 };
-
-export const Reviews = memo(useReviews);
